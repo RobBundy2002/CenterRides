@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CenterRides/static/css/main.e6c13ad2.css",
+    "main.js": "/CenterRides/static/js/main.820e6819.js",
+    "static/js/453.908f8c8e.chunk.js": "/CenterRides/static/js/453.908f8c8e.chunk.js",
+    "index.html": "/CenterRides/index.html",
+    "main.e6c13ad2.css.map": "/CenterRides/static/css/main.e6c13ad2.css.map",
+    "main.820e6819.js.map": "/CenterRides/static/js/main.820e6819.js.map",
+    "453.908f8c8e.chunk.js.map": "/CenterRides/static/js/453.908f8c8e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.820e6819.js"
+  ]
+}
