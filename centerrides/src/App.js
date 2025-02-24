@@ -3,12 +3,19 @@ import database from './firebase';
 import { ref, set, onValue, remove } from 'firebase/database';
 import './App.css';
 
+const fixedUsername = "CenterChurch";
+const fixedPassword = "GoAndMakeDisciples";
+
 function App() {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [service, setService] = useState('');
     const [plusOnes, setPlusOnes] = useState(0);
     const [rides, setRides] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const ridesRef = ref(database, 'rides/');
@@ -24,6 +31,15 @@ function App() {
             setRides(ridesList);
         });
     }, []);
+
+    const handleLogin = () => {
+        if (username === fixedUsername && password === fixedPassword) {
+            setIsLoggedIn(true);
+            setError('');
+        } else {
+            setError('Invalid username or password');
+        }
+    };
 
     const handleSubmit = () => {
         const dataRef = ref(database, 'rides/' + phoneNumber);
@@ -55,6 +71,28 @@ function App() {
             });
     };
 
+    if (!isLoggedIn) {
+        return (
+            <div className="login-container">
+                <h2>Login</h2>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button onClick={handleLogin}>Login</button>
+                {error && <p className="error">{error}</p>}
+            </div>
+        );
+    }
+
     const RideInfo = ({ ride }) => {
         const [showPhone, setShowPhone] = useState(false);
 
@@ -77,9 +115,9 @@ function App() {
 
     return (
         <div className="app-container">
-
             <div className="form-container">
                 <h1>Sign up for a ride!</h1>
+
                 <input
                     type="text"
                     placeholder="Enter your name"
@@ -114,17 +152,14 @@ function App() {
 
                 <button onClick={handleSubmit}>Submit</button>
             </div>
-
+            <h2>People who need rides:</h2>
             <div className="rides-list-container">
-                <h2>People who need rides:</h2>
                 <ul>
                     {rides.length > 0 ? (
                         rides.map((ride) => (
                             <RideInfo key={ride.key} ride={ride}/>
                         ))
-                    ) : (
-                        <p>No one has signed up yet!</p>
-                    )}
+                    ) : null}
                 </ul>
             </div>
         </div>

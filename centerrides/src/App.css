@@ -20,7 +20,9 @@ h1 {
 h2 {
   color: #333;
   font-size: 1.8em;
-  margin-top: 40px;
+  position: fixed;
+  top: 55vh;
+  left: 73vh;
   text-align: center;
 }
 
@@ -114,7 +116,7 @@ button {
 
 .form-container {
   position: fixed;
-  top: 5vh;
+  top: 1vh;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
@@ -125,8 +127,11 @@ button {
 }
 
 .rides-list-container {
-  margin-top: 10vh;
+  position: fixed;
+  top: 90vh;
+  left: 66vh;
+  margin-top: -25vh;
   padding: 20px;
-  max-height: 65vh;
+  max-height: 30vh;
   overflow-y: auto;
 }
